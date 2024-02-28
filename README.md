@@ -10,3 +10,20 @@ To get started with this project, follow these steps:
 ```bash
 git clone https://github.com/eaNewton/ionic-test.git
 ```
+
+2. Navigate to the project directory:
+```bash
+cd ionic-test
+```
+
+3. Install dependencies
+```bash
+yarn install
+```
+
+4. Run the development server:
+```bash
+ionic serve
+```
+
+5. Open your browser and visit http://localhost:8100 to view the application.
