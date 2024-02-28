@@ -18,7 +18,7 @@ cd ionic-test
 
 3. Install dependencies
 ```bash
-yarn install
+npm install
 ```
 
 4. Run the development server:
