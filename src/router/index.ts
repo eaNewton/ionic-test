@@ -5,15 +5,12 @@ import TabsPage from '../views/TabsPage.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/tabs/dashboard'
-  },
-  {
-    path: '/tabs/',
+    redirect: '/dashboard',
     component: TabsPage,
     children: [
       {
         path: '',
-        redirect: '/tabs/dashboard'
+        redirect: '/dashboard'
       },
       {
         path: 'dashboard',
@@ -27,7 +24,7 @@ const routes: Array<RouteRecordRaw> = [
         path: 'settings',
         component: () => import('@/views/SettingsPage.vue')
       }
-    ]
+    ],
   }
 ]
 
