@@ -30,6 +30,7 @@
 </template>
 
 <script setup lang="ts">
+import { usePhotoGallery } from "@/composables/usePhotoGallery"
 import {
   IonCol,
   IonContent,
@@ -42,10 +43,9 @@ import {
   IonPage,
   IonRow,
   IonTitle,
-  IonToolbar
-} from '@ionic/vue'
-import { camera, close, trash } from 'ionicons/icons'
-import { usePhotoGallery, UserPhoto } from '@/composables/usePhotoGallery'
+  IonToolbar,
+} from "@ionic/vue"
+import { camera } from "ionicons/icons"
 
-const { photos, takePhoto } = usePhotoGallery();
+const { photos, takePhoto } = usePhotoGallery()
 </script>

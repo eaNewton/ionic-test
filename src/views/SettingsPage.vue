@@ -35,23 +35,22 @@
 import {
   IonButton,
   IonCard,
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonThumbnail,
-  IonTitle,
   IonContent,
-  IonList,
+  IonHeader,
   IonItem,
   IonLabel,
-} from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
+  IonList,
+  IonPage,
+  IonThumbnail,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/vue"
 
 const handleLogout = () => {
-  console.log('Logging out!')
+  console.log("Logging out!")
 }
 
 const changePassword = () => {
-  console.log('change password')
+  console.log("change password")
 }
 </script>
