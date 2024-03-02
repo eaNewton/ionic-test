@@ -26,7 +26,7 @@
 
       <ion-card>
         <ion-card-header>
-          <ion-card-title>Insights</ion-card-title>
+          <ion-card-title>Energy Insights</ion-card-title>
         </ion-card-header>
         <ion-card-content>
             <ion-select
@@ -42,7 +42,7 @@
             </ion-select>
         </ion-card-content>
 
-        <Bar class="chart" />
+        <Bar class="chart" v-if="chartConfig" :data="chartConfig?.data" :options="chartConfig?.options" />
       </ion-card>
     </ion-content>
   </ion-page>
@@ -66,42 +66,21 @@ import {
 import { searchCircle } from "ionicons/icons"
 import Bar from "@/components/charts/BarChart.vue"
 import { dashboardGraphTimePeriods } from "@/data/const"
-import { ref, watch } from "vue"
+import { ref } from "vue"
+import { getChartConfig } from "@/utils/getChartConfig"
 
 const user = {
   firstName: "Jimmy",
 }
 
 const selectedTimePeriod = ref(dashboardGraphTimePeriods.TODAY.value)
-
-watch(selectedTimePeriod, (newValue, oldValue) => {
-  console.log(`Selected value changed from '${oldValue}' to '${newValue}'`)
-  console.log('selectedTimePeriod? ', selectedTimePeriod.value)
-})
+const chartConfig = ref(getChartConfig(dashboardGraphTimePeriods.TODAY.value))
 
 const setSelectedTimePeriod = (event: CustomEvent) => {
   console.log(event)
   selectedTimePeriod.value = event.detail.value
+  chartConfig.value = getChartConfig(selectedTimePeriod.value)
 }
-
-const getData = () => {
-  switch (selectedTimePeriod) {
-    case dashboardGraphTimePeriods.TODAY.value:
-      console.log('today!')
-      break
-    case dashboardGraphTimePeriods.THIS_WEEK.value:
-      console.log('this week!')
-      break
-    case dashboardGraphTimePeriods.THIS_MONTH.value:
-      console.log('this month!')
-      break
-    case dashboardGraphTimePeriods.THIS_YEAR.value:
-      console.log('this year!')
-      break
-  }
-}
-
-console.log(dashboardGraphTimePeriods)
 
 const handleSearch = (event: CustomEvent) => {
   console.log(event)

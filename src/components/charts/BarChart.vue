@@ -17,7 +17,6 @@
     Title,
     Tooltip,
   } from "chart.js"
-  import * as chartConfig from "@/data/chartConfig"
 
   ChartJS.register(
     BarElement,
@@ -32,7 +31,10 @@
     name: 'BarChart',
     components: { Bar },
     data() {
-      return chartConfig
+      return {
+        data: {},
+        options: {},
+      }
     }
   }
 </script>
