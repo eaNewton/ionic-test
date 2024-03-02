@@ -29,12 +29,17 @@
           <ion-card-title>Insights</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <ion-select placeholder="today">
-            <div slot="label">Showing results from </div>
-            <ion-select-option v-for="option in timePeriods" :value="option.value">
-              {{ option.value }}
-            </ion-select-option>
-          </ion-select>
+            <ion-select
+              aria-lebel="time period"
+              justify="end"
+              :value="selectedTimePeriod"
+              @ionChange="setSelectedTimePeriod($event)"
+            >
+              <div slot="label">Showing results from </div>
+              <ion-select-option v-for="option in dashboardGraphTimePeriods" :value="option.value">
+                {{ option.value }}
+              </ion-select-option>
+            </ion-select>
         </ion-card-content>
 
         <Bar class="chart" />
@@ -59,41 +64,48 @@ import {
   IonToolbar,
 } from "@ionic/vue"
 import { searchCircle } from "ionicons/icons"
-import Bar from "@/components/charts/BarChart.vue";
-
-const timePeriods = [
-  {
-    id: 0,
-    value: 'today',
-  },
-  {
-    id: 1,
-    value: 'this week',
-  },
-  {
-    id: 2,
-    value: 'this month',
-  },
-  {
-    id: 3,
-    value: 'this year',
-  }
-]
+import Bar from "@/components/charts/BarChart.vue"
+import { dashboardGraphTimePeriods } from "@/data/const"
+import { ref, watch } from "vue"
 
 const user = {
   firstName: "Jimmy",
 }
 
-const interval = "last week"
+const selectedTimePeriod = ref(dashboardGraphTimePeriods.TODAY.value)
 
-const handleSearch = (event: any) => {
-  console.log("event.target.value: ", event.target.value)
+watch(selectedTimePeriod, (newValue, oldValue) => {
+  console.log(`Selected value changed from '${oldValue}' to '${newValue}'`)
+  console.log('selectedTimePeriod? ', selectedTimePeriod.value)
+})
+
+const setSelectedTimePeriod = (event: CustomEvent) => {
+  console.log(event)
+  selectedTimePeriod.value = event.detail.value
+}
+
+const getData = () => {
+  switch (selectedTimePeriod) {
+    case dashboardGraphTimePeriods.TODAY.value:
+      console.log('today!')
+      break
+    case dashboardGraphTimePeriods.THIS_WEEK.value:
+      console.log('this week!')
+      break
+    case dashboardGraphTimePeriods.THIS_MONTH.value:
+      console.log('this month!')
+      break
+    case dashboardGraphTimePeriods.THIS_YEAR.value:
+      console.log('this year!')
+      break
+  }
+}
+
+console.log(dashboardGraphTimePeriods)
+
+const handleSearch = (event: CustomEvent) => {
+  console.log(event)
+  console.log("event.target.value: ", event.detail.value)
   return
 }
 </script>
-
-<style>
-  .chart {
-    max-height: 400px;
-  }
-</style>

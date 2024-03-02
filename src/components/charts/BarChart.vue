@@ -1,6 +1,6 @@
 <template>
   <Bar
-    id="dashboard-bar-chart"
+    id="bar-chart"
     :options="options"
     :data="data"
   />
@@ -36,3 +36,9 @@
     }
   }
 </script>
+
+<style>
+  #bar-chart {
+    max-height: 300px;
+  }
+</style>
