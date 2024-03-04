@@ -13,9 +13,13 @@
       </ion-header>
 
       <ion-card id="profile">
-        <ion-thumbnail>
-          <img alt="user profile photo" src="" />
-        </ion-thumbnail>
+        <div id="avatar-container">
+          <ion-img alt="user profile photo" class="avatar" v-bind:src="profileImage" v-if="profileImage"></ion-img>
+        </div>
+        <ion-button @click="fetchProfileImage" id="avatar-button">
+          <div v-if="!loading">Get avatar image</div>
+          <div v-else>Fetching image...</div>
+        </ion-button>
       </ion-card>
 
       <ion-list>
@@ -37,14 +41,18 @@ import {
   IonCard,
   IonContent,
   IonHeader,
+  IonImg,
   IonItem,
   IonLabel,
   IonList,
   IonPage,
-  IonThumbnail,
   IonTitle,
   IonToolbar,
 } from "@ionic/vue"
+import { ref } from "vue"
+
+const profileImage = ref('/placeholder-avatar.png');
+const loading = ref(false)
 
 const handleLogout = () => {
   console.log("Logging out!")
@@ -53,4 +61,38 @@ const handleLogout = () => {
 const changePassword = () => {
   console.log("change password")
 }
+
+const fetchProfileImage = async () => {
+  try {
+    loading.value = true
+    const response = await fetch('https://picsum.photos/400/400')
+    profileImage.value = response.url
+    loading.value = false
+  } catch (error) {
+    console.error('Error fetching new avatar image: ', error)
+  }
+}
+
 </script>
+
+<style scoped>
+  #avatar-button {
+    margin-bottom: 15px;
+  }
+  #avatar-container {
+    margin: 15px;
+    max-height: 200px;
+    max-width: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  #profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+</style>
