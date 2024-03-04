@@ -13,17 +13,25 @@ const routes: Array<RouteRecordRaw> = [
         redirect: '/dashboard'
       },
       {
-        path: 'dashboard',
+        path: '/dashboard',
         component: () => import('@/views/DashboardPage.vue')
       },
       {
-        path: 'gallery',
+        path: '/gallery',
         component: () => import('@/views/GalleryPage.vue')
       },
       {
-        path: 'settings',
-        component: () => import('@/views/SettingsPage.vue')
-      }
+        path: '/settings',
+        component: () => import('@/views/Settings/SettingsPage.vue'),
+      },
+      {
+        path: '/settings/update_username',
+        component: () => import('@/views/Settings/UpdateUsernamePage.vue')
+      },
+      {
+        path: '/settings/update_password',
+        component: () => import('@/views/Settings/UpdatePasswordPage.vue')
+      },
     ],
   }
 ]

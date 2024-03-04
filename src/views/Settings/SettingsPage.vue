@@ -24,10 +24,13 @@
 
       <ion-list>
         <ion-item>
-          <ion-label>Change Username</ion-label>
+          <ion-button class="button" fill="clear" router-link="/settings/update_username">Change Username</ion-button>
         </ion-item>
         <ion-item>
-          <ion-label @click="changePassword">Change Password</ion-label>
+          <ion-button class="button" fill="clear" router-link="/settings/update_password">Change Password</ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-toggle class="toggle" :checked="receivePNs">Receive Push Notifications</ion-toggle>
         </ion-item>
       </ion-list>
     </ion-content>
@@ -43,23 +46,21 @@ import {
   IonHeader,
   IonImg,
   IonItem,
-  IonLabel,
   IonList,
   IonPage,
   IonTitle,
+  IonToggle,
   IonToolbar,
 } from "@ionic/vue"
 import { ref } from "vue"
 
-const profileImage = ref('/placeholder-avatar.png');
+const receivePNs = true
+
+const profileImage = ref('/placeholder-avatar.png')
 const loading = ref(false)
 
 const handleLogout = () => {
   console.log("Logging out!")
-}
-
-const changePassword = () => {
-  console.log("change password")
 }
 
 const fetchProfileImage = async () => {
@@ -72,7 +73,6 @@ const fetchProfileImage = async () => {
     console.error('Error fetching new avatar image: ', error)
   }
 }
-
 </script>
 
 <style scoped>
@@ -88,11 +88,18 @@ const fetchProfileImage = async () => {
     width: 100%;
     height: 100%;
   }
+  .button {
+    color: white;
+    font-size: 16px;;
+  }
   #profile {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
+  }
+  .toggle {
+    padding-left: 8px;
   }
 </style>

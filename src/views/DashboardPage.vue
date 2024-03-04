@@ -137,7 +137,10 @@ import { ref } from "vue"
 import { getChartConfig } from "@/utils/getChartConfig"
 
 const user = {
-  firstName: "Jimmy",
+  id: 0,
+  email: "emmettnewton1@gmail.com",
+  firstName: "Emmett",
+  lastName: "Newton",
 }
 
 const selectedTimePeriod = ref(dashboardGraphTimePeriods.TODAY.value)
