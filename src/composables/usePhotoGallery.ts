@@ -47,6 +47,18 @@ export const usePhotoGallery = () => {
     photos.value = [savedFileImage, ...photos.value]
   }
 
+  const deletePhoto = async (photo: UserPhoto) => {
+    // Remove this photo from the Photos reference data array
+    photos.value = photos.value.filter((p) => p.filepath !== photo.filepath)
+
+    // Delete photo from filesystem
+    const filename = photo.filepath.substring(photo.filepath.lastIndexOf('/') + 1)
+    await Filesystem.deleteFile({
+      path: filename,
+      directory: Directory.Data,
+    })
+  }
+
   const loadSaved = async () => {
     const photoList = await Preferences.get({ key: PHOTO_STORAGE });
     const photosInPreferences = photoList.value ? JSON.parse(photoList.value) : [];
@@ -69,6 +81,7 @@ export const usePhotoGallery = () => {
   onMounted(loadSaved);
 
   return {
+    deletePhoto,
     photos,
     takePhoto,
   }
