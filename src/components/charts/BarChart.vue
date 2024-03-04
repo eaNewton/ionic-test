@@ -38,9 +38,3 @@
     }
   }
 </script>
-
-<style>
-  #bar-chart {
-    max-height: 300px;
-  }
-</style>

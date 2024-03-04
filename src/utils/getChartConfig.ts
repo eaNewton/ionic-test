@@ -1,22 +1,38 @@
 import {
   dashboardGraphTimePeriods,
-  thisMonthChartConfig,
-  thisWeekChartConfig,
-  thisYearChartConfig,
-  todayChartConfig
+  thisMonthBarChartConfig,
+  thisMonthDoughnutChartConfig,
+  thisWeekBarChartConfig,
+  thisWeekDoughnutChartConfig,
+  thisYearBarChartConfig,
+  thisYearDoughnutChartConfig,
+  todayBarChartConfig,
+  todayDoughnutChartConfig,
 } from "@/data/const"
 
 export const getChartConfig = (timePeriod: string) => {
   // This next portion should be replaced with an actual API call
   switch (timePeriod) {
     case dashboardGraphTimePeriods.TODAY.value:
-      return todayChartConfig
+      return {
+        bar: todayBarChartConfig,
+        doughnut: todayDoughnutChartConfig,
+      }
     case dashboardGraphTimePeriods.THIS_WEEK.value:
-      return thisWeekChartConfig
+      return {
+        bar: thisWeekBarChartConfig,
+        doughnut: thisWeekDoughnutChartConfig,
+      }
     case dashboardGraphTimePeriods.THIS_MONTH.value:
-      return thisMonthChartConfig
+      return {
+        bar: thisMonthBarChartConfig,
+        doughnut: thisMonthDoughnutChartConfig,
+      }
     case dashboardGraphTimePeriods.THIS_YEAR.value:
-      return thisYearChartConfig
+      return {
+        bar: thisYearBarChartConfig,
+        doughnut: thisYearDoughnutChartConfig,
+      }
     default:
       return
   }
